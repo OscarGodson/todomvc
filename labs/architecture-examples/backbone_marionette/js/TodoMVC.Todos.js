@@ -1,22 +1,24 @@
-TodoMVC.module("Todos", function(Todos, App, Backbone, Marionette, $, _){
+TodoMVC.module('Todos', function(Todos, App, Backbone, Marionette, $, _) {
 
 	// Todo Model
 	// ----------
 
 	Todos.Todo = Backbone.Model.extend({
-		localStorage: new Backbone.LocalStorage('todos-backbone'),
+		localStorage: new Backbone.LocalStorage('todos-backbone-marionettejs'),
 
 		defaults: {
-			title     : '',
-			completed : false,
-			created   : 0
+			title: '',
+			completed: false,
+			created: 0
 		},
 
-		initialize : function() {
-			if (this.isNew()) this.set('created', Date.now());
+		initialize: function() {
+			if (this.isNew()) {
+				this.set('created', Date.now());
+			}
 		},
 
-		toggle  : function() {
+		toggle: function() {
 			return this.set('completed', !this.isCompleted());
 		},
 
@@ -41,7 +43,7 @@ TodoMVC.module("Todos", function(Todos, App, Backbone, Marionette, $, _){
 			return this.reject(this._isCompleted);
 		},
 
-		comparator: function( todo ) {
+		comparator: function(todo) {
 			return todo.get('created');
 		},
 
